@@ -1,1 +1,16 @@
+*.min.*
+*.d.ts
+CHANGELOG.md
+LICENSE*
+output
+coverage
+temp
 build
+dist
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+__snapshots__
+!.github
+!.vscode
+.yarn
