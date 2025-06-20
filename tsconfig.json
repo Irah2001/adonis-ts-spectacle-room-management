@@ -2,7 +2,16 @@
 	"extends": "@adonisjs/tsconfig/tsconfig.app.json",
 	"compilerOptions": {
 		"rootDir": "./",
-		"outDir": "./build"
+		"outDir": "./build",
+		"target": "ES2020",
+		"module": "NodeNext",
+    "moduleResolution": "NodeNext",
+		"experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "useDefineForClassFields": true,
+		"strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true
 	},
 	"exclude": ["./inertia/**/*", "node_modules", "build"]
 }
