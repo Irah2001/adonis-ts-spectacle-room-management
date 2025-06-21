@@ -5,13 +5,23 @@ const inertiaConfig = defineConfig({
 	/**
 	 * Path to the Edge view that will be used as the root view for Inertia responses
 	 */
-	rootView: 'inertia_layout',
+	rootView: 'inertia-layout',
 
 	/**
 	 * Data that should be shared with all rendered pages
 	 */
 	sharedData: {
-		// user: (ctx) => ctx.inertia.always(() => ctx.auth.user),
+		user: async (context) => {
+			try {
+				await context.auth.authenticate();
+			} catch {
+				return;
+			}
+
+			return context.auth.user!.serialize({ fields: ['email'] });
+		},
+		errors: (context) => context.session.flashMessages.get('errors') as unknown,
+		notification: (context) => context.session.flashMessages.get('notification') as unknown,
 	},
 
 	/**

@@ -1,0 +1,42 @@
+name: Type check
+on:
+  push:
+    branches:
+      - '*'
+    paths-ignore:
+      - '*.{md,txt}'
+      - LICENSE
+      - .*config
+    tags-ignore:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+    paths-ignore:
+      - '*.{md,txt}'
+      - LICENSE
+      - .*config
+
+jobs:
+  type-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      - name: Type check
+        run: pnpm typecheck

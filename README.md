@@ -9,18 +9,14 @@ Gestion de salles de spectacles réalisée avec [AdonisJS](https://adonisjs.com/
 - Gestion des **artistes** liés à un spectacle
 - Réservation de places pour un spectacle donné
 - Interface API RESTful structurée
-- Authentification avec JWT
 
 ## 🛠️ Technologies utilisées
 
-- [AdonisJS v5](https://docs.adonisjs.com/)
+- [AdonisJS](https://docs.adonisjs.com/)
 - TypeScript
 - PostgreSQL
 - Lucid ORM
-- JWT Auth
-- Dotenv
 - Prettier + ESLint
-- Node v18
 
 ## 📦 Installation
 
@@ -34,7 +30,7 @@ cd adonis-ts-spectacle-room-management
 ### 2. Installer les dépendances
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 3. Configurer l’environnement
@@ -45,7 +41,8 @@ Copier .env.example en .env puis configurer les variables (notamment la base de 
 
 ```bash
 docker compose up -d
-node ace migration:run
+pnpm ace migration:run
+pnpm ace db:seed
 ```
 
 ### 5. Lancer le serveur
@@ -53,5 +50,5 @@ node ace migration:run
 En mode dev
 
 ```bash
-npm run dev --watch
+pnpm dev
 ```

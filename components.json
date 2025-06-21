@@ -1,0 +1,18 @@
+{
+	"$schema": "https://ui.shadcn.com/schema.json",
+	"style": "default",
+	"rsc": true,
+	"tailwind": {
+		"config": "",
+		"css": "inertia/css/app.css",
+		"baseColor": "zinc",
+		"cssVariables": true
+	},
+	"aliases": {
+		"components": "inertia/components",
+		"utils": "~/lib/utils",
+		"ui": "~/components/ui",
+		"lib": "~/lib",
+		"hooks": "~/hooks"
+	}
+}

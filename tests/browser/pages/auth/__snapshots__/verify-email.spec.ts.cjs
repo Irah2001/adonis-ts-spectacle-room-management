@@ -1,0 +1,2 @@
+exports[`Auth verify email > Verify email with valid token page show verify email form 1`] = `"<div class=\\"bg-card text-card-foreground rounded-lg border shadow-sm my-auto w-full max-w-sm\\"><div class=\\"flex flex-col space-y-1.5 p-6\\"><h3 class=\\"font-semibold tracking-tight text-2xl\\">Verify Email</h3><p class=\\"text-muted-foreground text-sm\\">Click on the button below to verify you email</p></div><div class=\\"p-6 pt-0\\"><button class=\\"btn btn-primary\\" type=\\"button\\">Verify Email</button></div></div>"`
+

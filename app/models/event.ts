@@ -2,7 +2,7 @@ import { BaseModel, belongsTo, column, hasMany } from '@adonisjs/lucid/orm';
 import * as relations from '@adonisjs/lucid/types/relations';
 import { DateTime } from 'luxon';
 
-import EventNeed from './event_need.js';
+import EventNeed from './event-need.js';
 import Participant from './participant.js';
 import Room from './room.js';
 
