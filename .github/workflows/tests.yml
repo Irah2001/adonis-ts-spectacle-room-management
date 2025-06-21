@@ -99,7 +99,7 @@ jobs:
 
       - name: ${{ matrix.test-mode != 'functional' && format('Install playwright {0} browser', matrix.test-mode) || 'Skipped' }}
         if: ${{ matrix.test-mode != 'functional' }}
-        run: pnpm exect playwright install --with-deps ${{ matrix.test-mode }}
+        run: pnpm dlx playwright install --with-deps ${{ matrix.test-mode }}
 
       - name: Run migrations
         run: pnpm ace migration:run
