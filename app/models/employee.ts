@@ -1,28 +1,28 @@
-import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
-import * as relations from '@adonisjs/lucid/types/relations'
+import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm';
+import * as relations from '@adonisjs/lucid/types/relations';
+import { DateTime } from 'luxon';
 
-import Task from './task.js'
+import Task from './task.js';
 
 export default class Employee extends BaseModel {
-  @column({ isPrimary: true })
-  declare id: number
+	@column({ isPrimary: true })
+	declare id: number;
 
 	@column()
-	declare firstName: string
+	declare firstName: string;
 
 	@column()
-	declare lastName: string
+	declare lastName: string;
 
 	@column()
-	declare function: string
+	declare function: string;
 
 	@hasMany(() => Task)
-	declare tasks: relations.HasMany<typeof Task>
+	declare tasks: relations.HasMany<typeof Task>;
 
-  @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
+	@column.dateTime({ autoCreate: true })
+	declare createdAt: DateTime;
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime
+	@column.dateTime({ autoCreate: true, autoUpdate: true })
+	declare updatedAt: DateTime;
 }

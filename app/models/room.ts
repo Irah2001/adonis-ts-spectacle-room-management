@@ -1,13 +1,13 @@
-import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
-import * as relations from '@adonisjs/lucid/types/relations'
+import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm';
+import * as relations from '@adonisjs/lucid/types/relations';
+import { DateTime } from 'luxon';
 
-import Task from './task.js'
-import Event from './event.js'
+import Event from './event.js';
+import Task from './task.js';
 
 export default class Room extends BaseModel {
-  @column({ isPrimary: true })
-  declare id: number
+	@column({ isPrimary: true })
+	declare id: number;
 
 	@column()
 	declare name: string;
@@ -19,14 +19,14 @@ export default class Room extends BaseModel {
 	declare capacity: number;
 
 	@hasMany(() => Task)
-	declare tasks: relations.HasMany<typeof Task>
+	declare tasks: relations.HasMany<typeof Task>;
 
 	@hasMany(() => Event)
-	declare events: relations.HasMany<typeof Event>
+	declare events: relations.HasMany<typeof Event>;
 
-  @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
+	@column.dateTime({ autoCreate: true })
+	declare createdAt: DateTime;
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime
+	@column.dateTime({ autoCreate: true, autoUpdate: true })
+	declare updatedAt: DateTime;
 }
