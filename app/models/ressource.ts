@@ -2,7 +2,7 @@ import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm';
 import * as relations from '@adonisjs/lucid/types/relations';
 import { DateTime } from 'luxon';
 
-import RessourceNeed from './ressource_need.js';
+import RessourceNeed from './ressource-need.js';
 
 export default class Ressource extends BaseModel {
 	@column({ isPrimary: true })

@@ -1,0 +1,115 @@
+name: Tests
+on:
+  push:
+    branches:
+      - '*'
+    paths-ignore:
+      - '*.{md,txt}'
+      - LICENSE
+      - .*config
+    tags-ignore:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+    paths-ignore:
+      - '*.{md,txt}'
+      - LICENSE
+      - .*config
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        test-mode: [functional, chromium, firefox, webkit]
+        include:
+          - pg-port: 5430
+            test-mode: functional
+          - pg-port: 5431
+            test-mode: chromium
+          - pg-port: 5432
+            test-mode: firefox
+          - pg-port: 5433
+            test-mode: webkit
+
+    env:
+      TZ: UTC
+      PORT: 3333
+      HOST: localhost
+      LOG_LEVEL: info
+      APP_KEY: zKXHe-Ahdb7aPK1ylAJlRgTefktEaACi
+      NODE_ENV: development
+      SESSION_DRIVER: memory
+      DB_HOST: localhost
+      DB_PORT: ${{ matrix.pg-port }}
+      DB_USER: user
+      DB_DATABASE: database
+      DB_PASSWORD: password
+      APP_EMAIL: noreply@test.fr
+      APP_URL: http://localhost:3333
+      SMTP_HOST: localhost
+      SMTP_PORT: 1025
+      DEFAULT_SUPER_ADMIN_EMAIL: admin@test.fr
+      DEFAULT_SUPER_ADMIN_PASSWORD: admin
+
+    services:
+      postgres-${{ matrix.test-mode }}:
+        image: postgres
+
+        ports:
+          - '${{ matrix.pg-port }}:5432'
+
+        env:
+          POSTGRES_DB: database
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      mailcatcher:
+        image: sj26/mailcatcher
+
+        ports:
+          - '1080:1080'
+          - '1025:1025'
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      - name: ${{ matrix.test-mode != 'functional' && format('Install playwright {0} browser', matrix.test-mode) || 'Skipped' }}
+        if: ${{ matrix.test-mode != 'functional' }}
+        run: pnpm exec playwright install --with-deps ${{ matrix.test-mode }}
+
+      - name: Run migrations
+        run: pnpm ace migration:run
+
+      - name: Run tests
+        run: pnpm test:${{ matrix.test-mode }}
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ matrix.test-mode != 'functional' && always() && hashFiles('tests/traces/browser/*.zip') != '' }}
+        with:
+          name: playwright-traces-${{ matrix.test-mode }}
+          path: tests/traces/browser/
+          retention-days: 30

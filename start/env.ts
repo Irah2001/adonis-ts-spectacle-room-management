@@ -17,6 +17,8 @@ export default await Env.create(new URL('../', import.meta.url), {
 	APP_KEY: Env.schema.string(),
 	HOST: Env.schema.string({ format: 'host' }),
 	LOG_LEVEL: Env.schema.string(),
+	APP_URL: Env.schema.string(),
+	APP_EMAIL: Env.schema.string({ format: 'email' }),
 
 	/*
   |----------------------------------------------------------
@@ -35,4 +37,20 @@ export default await Env.create(new URL('../', import.meta.url), {
 	DB_USER: Env.schema.string(),
 	DB_PASSWORD: Env.schema.string.optional(),
 	DB_DATABASE: Env.schema.string(),
+
+	/*
+  |----------------------------------------------------------
+  | Variables for configuring the mail package
+  |----------------------------------------------------------
+  */
+	SMTP_HOST: Env.schema.string(),
+	SMTP_PORT: Env.schema.string(),
+
+	/*
+  |----------------------------------------------------------
+  | Variables for configuring default super admin account
+  |----------------------------------------------------------
+  */
+	DEFAULT_SUPER_ADMIN_EMAIL: Env.schema.string({ format: 'email' }),
+	DEFAULT_SUPER_ADMIN_PASSWORD: Env.schema.string(),
 });

@@ -3,7 +3,7 @@ import * as relations from '@adonisjs/lucid/types/relations';
 import { DateTime } from 'luxon';
 
 import Event from './event.js';
-import RessourceNeed from './ressource_need.js';
+import RessourceNeed from './ressource-need.js';
 
 export default class EventNeed extends BaseModel {
 	@column({ isPrimary: true })

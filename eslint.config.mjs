@@ -12,7 +12,7 @@ import tseslint from 'typescript-eslint';
 
 export default [
 	{
-		files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
+		//files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
 		ignores: [
 			'**/*.min.*',
 			'**/*.d.ts',
@@ -238,6 +238,7 @@ export default [
 			'sonarjs/no-identical-functions': 'off',
 			'sonarjs/no-inverted-boolean-check': 'error',
 			'sonarjs/cognitive-complexity': 'off',
+			'sonarjs/no-hardcoded-passwords': 'off',
 
 			'sort-imports': 'off',
 
