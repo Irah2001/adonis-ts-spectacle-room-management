@@ -15,7 +15,7 @@ export function Notifications() {
 	const mounted = useMounted();
 
 	useEffect(() => {
-		if (!mounted || !notification) {
+		if (!mounted || !(notification && (errors as unknown))) {
 			return;
 		}
 
