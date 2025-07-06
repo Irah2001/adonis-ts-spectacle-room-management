@@ -2,11 +2,11 @@ import router from '@adonisjs/core/services/router';
 
 import { middleware } from '../kernel.js';
 
-const RegisterController = () => import('#controllers/register-controller');
-const LoginController = () => import('#controllers/login-controller');
-const LogoutController = () => import('#controllers/logout-controller');
-const VerifyEmailController = () => import('#controllers/verify-email-controller');
-const PasswordResetController = () => import('#controllers/password-reset-controller');
+const RegisterController = () => import('#controllers/auth/register-controller');
+const LoginController = () => import('#controllers/auth/login-controller');
+const LogoutController = () => import('#controllers/auth/logout-controller');
+const VerifyEmailController = () => import('#controllers/auth/verify-email-controller');
+const PasswordResetController = () => import('#controllers/auth/password-reset-controller');
 
 router
 	.group(() => {

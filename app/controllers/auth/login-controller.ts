@@ -36,6 +36,14 @@ export default class LoginController {
 			message: 'You have been logged in successfully',
 		});
 
+		const { redirectTo } = request.qs();
+
+		if (redirectTo) {
+			response.redirect(redirectTo as string);
+
+			return;
+		}
+
 		response.redirect().toRoute('home');
 	}
 }

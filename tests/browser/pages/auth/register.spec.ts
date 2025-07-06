@@ -108,7 +108,5 @@ test.group('Auth register', (group) => {
 
 		await registerLink.click();
 		await page.waitForURL(route('auth.register.render'));
-
-		await page.assertUrlContains(route('auth.register.render'));
 	});
 });

@@ -2,7 +2,7 @@ import type { InferPageProps } from '@adonisjs/inertia/types';
 import { Link } from '@inertiajs/react';
 import { route } from '@izzyjs/route/client';
 
-import type VerifyEmailController from '#controllers/verify-email-controller';
+import type VerifyEmailController from '#controllers/auth/verify-email-controller';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card';
 

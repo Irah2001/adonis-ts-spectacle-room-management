@@ -2,7 +2,7 @@ import type { InferPageProps } from '@adonisjs/inertia/types';
 import { Link } from '@inertiajs/react';
 import { route } from '@izzyjs/route/client';
 
-import type PasswordResetController from '#controllers/password-reset-controller';
+import type PasswordResetController from '#controllers/auth/password-reset-controller';
 
 import { PasswordResetForm } from '~/components/forms/password-reset-form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card';

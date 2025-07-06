@@ -113,8 +113,6 @@ test.group('Auth login', (group) => {
 
 		await loginLink.click();
 		await page.waitForURL(route('auth.login.render'));
-
-		await page.assertUrlContains(route('auth.login.render'));
 	});
 
 	test("Home page don't show login button when logged in", async ({ visit, route, browserContext }) => {
@@ -170,7 +168,7 @@ test.group('Auth login', (group) => {
 		await page.getByRole('button', { name: 'Login' }).click();
 		await page.waitForURL(route('home'));
 
-		await browserContext.setCookie('adonis-session', '', { domain: 'localhost' });
+		await browserContext.setCookie('adonis-session', '');
 
 		const homePage = await visit(route('home'));
 

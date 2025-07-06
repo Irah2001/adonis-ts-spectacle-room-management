@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { vineResolver } from '@hookform/resolvers/vine';
 import { Link, router, usePage } from '@inertiajs/react';
 import { route } from '@izzyjs/route/client';
+import queryString from 'query-string';
 import { useForm } from 'react-hook-form';
 
 import { NotificationType } from '#types/notification';
@@ -46,7 +47,13 @@ export function LoginForm() {
 	}, [pageProps.errors]);
 
 	function onSubmit(data: LoginSchema) {
-		router.post(route('auth.login.handle').path, data, {
+		const url = new URL(route('auth.login.handle').path, location.origin);
+		const query = queryString.parse(location.search);
+		const redirectTo = Array.isArray(query.redirectTo) ? undefined : query.redirectTo;
+
+		url.searchParams.set('redirectTo', redirectTo ?? '');
+
+		router.post(url, data, {
 			onError: () => {
 				handleNotification({
 					type: NotificationType.Error,

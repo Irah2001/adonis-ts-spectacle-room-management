@@ -6,7 +6,7 @@ import { router, usePage } from '@inertiajs/react';
 import { route } from '@izzyjs/route/client';
 import { useForm } from 'react-hook-form';
 
-import type PasswordResetController from '#controllers/password-reset-controller';
+import type PasswordResetController from '#controllers/auth/password-reset-controller';
 import { NotificationType } from '#types/notification';
 import { passwordResetValidator, type PasswordResetSchema } from '#validators/auth';
 
