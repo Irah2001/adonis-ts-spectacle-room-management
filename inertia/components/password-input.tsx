@@ -19,7 +19,7 @@ export function PasswordInput<FieldValues extends object>({
 	field,
 	onChange,
 	...props
-}: Readonly<PasswordInputProps<FieldValues>>) {
+}: PasswordInputProps<FieldValues>) {
 	const [isPasswordHidden, setPasswordHidden] = useState(true);
 
 	const PasswordVisibilityIcon = isPasswordHidden ? EyeIcon : EyeSlashIcon;

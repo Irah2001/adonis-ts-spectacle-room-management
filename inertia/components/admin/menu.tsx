@@ -11,23 +11,23 @@ export function AdminMenu() {
 					<LayoutDashboard className="h-4 w-4" />
 					Dashboard
 				</AdminMenuLink>
-				<AdminMenuLink href="#">
+				<AdminMenuLink href={route('admin.bookings.render').path}>
 					<CalendarDays className="h-4 w-4" />
 					Booking Calendar
 				</AdminMenuLink>
-				<AdminMenuLink href="#">
+				<AdminMenuLink href={route('admin.artists.render').path}>
 					<Music2 className="h-4 w-4" />
 					Artist Management
 				</AdminMenuLink>
-				<AdminMenuLink href="#">
+				<AdminMenuLink href={route('admin.employees.render').path}>
 					<Users className="h-4 w-4" />
 					Employee Scheduling
 				</AdminMenuLink>
-				<AdminMenuLink href="#">
+				<AdminMenuLink href={route('admin.invoices.render').path}>
 					<CreditCard className="h-4 w-4" />
 					Invoice Management
 				</AdminMenuLink>
-				<AdminMenuLink href="#">
+				<AdminMenuLink href={route('admin.tickets.render').path}>
 					<Ticket className="h-4 w-4" />
 					Ticket Sales
 				</AdminMenuLink>

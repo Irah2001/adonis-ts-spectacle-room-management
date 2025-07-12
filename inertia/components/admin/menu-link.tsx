@@ -1,18 +1,19 @@
 import { Link, usePage } from '@inertiajs/react';
-import clsx from 'clsx';
+
+import { cn } from '~/lib/utils';
 
 interface AdminMenuLinkProps {
 	href: string;
 	children: React.ReactNode;
 }
 
-export function AdminMenuLink({ href, children }: Readonly<AdminMenuLinkProps>) {
+export function AdminMenuLink({ href, children }: AdminMenuLinkProps) {
 	const { url } = usePage();
 
 	return (
 		<Link
 			href={href}
-			className={clsx(
+			className={cn(
 				'flex items-center gap-3 rounded-lg px-3 py-2 transition-all',
 				url === href
 					? 'bg-primary text-primary-foreground hover:text-primary-foreground'

@@ -1,5 +1,5 @@
 interface ServerErrorProps {
-	readonly error: Error;
+	error: Error;
 }
 
 export default function ServerError({ error }: ServerErrorProps) {

@@ -10,9 +10,9 @@
 	},
 	"aliases": {
 		"components": "inertia/components",
-		"utils": "~/lib/utils",
-		"ui": "~/components/ui",
-		"lib": "~/lib",
-		"hooks": "~/hooks"
+		"utils": "inertia/lib/utils",
+		"ui": "inertia/components/ui",
+		"lib": "inertia/lib",
+		"hooks": "inertia/hooks"
 	}
 }

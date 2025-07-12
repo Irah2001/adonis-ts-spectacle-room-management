@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 
 import { CalendarDays, DollarSign, Music2, Ticket } from 'lucide-react';
 
+import { AdminDashboardStat } from '~/components/admin/dashboard/stat';
 import { AdminMenu } from '~/components/admin/menu';
-import { DashboardStat } from '~/components/dashboard-stat';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card';
 
 function getStatusColor(status: string) {
@@ -97,15 +97,20 @@ export default function Dashboard() {
 							<p className="text-muted-foreground">Overview of your venue management system.</p>
 						</div>
 						<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-							<DashboardStat
+							<AdminDashboardStat
 								title="Total Revenue"
 								value="$45,231.89"
 								Icon={DollarSign}
 								description="+20.1% from last month"
 							/>
-							<DashboardStat title="Upcoming Events" value="12" Icon={CalendarDays} description="3 events this week" />
-							<DashboardStat title="Tickets Sold" value="2,350" Icon={Ticket} description="+15% from last month" />
-							<DashboardStat title="Active Artists" value="24" Icon={Music2} description="5 new this month" />
+							<AdminDashboardStat
+								title="Upcoming Events"
+								value="12"
+								Icon={CalendarDays}
+								description="3 events this week"
+							/>
+							<AdminDashboardStat title="Tickets Sold" value="2,350" Icon={Ticket} description="+15% from last month" />
+							<AdminDashboardStat title="Active Artists" value="24" Icon={Music2} description="5 new this month" />
 						</div>
 						<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
 							<Card className="col-span-4">

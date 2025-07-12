@@ -6,7 +6,7 @@ import type VerifyEmailController from '#controllers/auth/verify-email-controlle
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card';
 
-export default function VerifyEmail({ token }: Readonly<InferPageProps<VerifyEmailController, 'render'>>) {
+export default function VerifyEmail({ token }: InferPageProps<VerifyEmailController, 'render'>) {
 	return (
 		<Card className="my-auto w-full max-w-sm">
 			<CardHeader>

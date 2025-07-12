@@ -7,7 +7,7 @@ import type PasswordResetController from '#controllers/auth/password-reset-contr
 import { PasswordResetForm } from '~/components/forms/password-reset-form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card';
 
-export default function ForgotPassword({ token }: Readonly<InferPageProps<PasswordResetController, 'renderReset'>>) {
+export default function ForgotPassword({ token }: InferPageProps<PasswordResetController, 'renderReset'>) {
 	return (
 		<Card className="my-auto w-full max-w-sm">
 			<CardHeader>

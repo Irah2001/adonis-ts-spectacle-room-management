@@ -16,7 +16,7 @@ import { PasswordInput } from '../password-input';
 import { Button } from '../ui/button';
 import { Form, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 
-export function PasswordResetForm({ token }: Readonly<InferPageProps<PasswordResetController, 'renderReset'>>) {
+export function PasswordResetForm({ token }: InferPageProps<PasswordResetController, 'renderReset'>) {
 	const pageProps = usePage().props;
 
 	const form = useForm<PasswordResetSchema>({

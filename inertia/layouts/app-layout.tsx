@@ -5,7 +5,7 @@ import { ThemeProvider } from 'next-themes';
 import Header from '~/components/header';
 import { Notifications } from '~/components/notifications';
 
-export function AppLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export function AppLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<StrictMode>
 			<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>

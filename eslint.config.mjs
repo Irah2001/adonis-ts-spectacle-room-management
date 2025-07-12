@@ -126,7 +126,7 @@ export default [
 			'@typescript-eslint/unbound-method': 'off',
 
 			'no-shadow': 'off',
-			'@typescript-eslint/no-shadow': 'error',
+			'@typescript-eslint/no-shadow': ['error', { ignoreOnInitialization: true }],
 			'no-use-before-define': 'off',
 			'@typescript-eslint/no-use-before-define': [
 				'error',
@@ -239,6 +239,7 @@ export default [
 			'sonarjs/no-inverted-boolean-check': 'error',
 			'sonarjs/cognitive-complexity': 'off',
 			'sonarjs/no-hardcoded-passwords': 'off',
+			'sonarjs/prefer-read-only-props': 'off',
 
 			'sort-imports': 'off',
 

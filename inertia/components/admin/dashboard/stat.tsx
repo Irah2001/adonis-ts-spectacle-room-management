@@ -7,7 +7,7 @@ interface DashboardStatProps {
 	description?: string;
 }
 
-export function DashboardStat({ title, value, Icon, description }: Readonly<DashboardStatProps>) {
+export function AdminDashboardStat({ title, value, Icon, description }: DashboardStatProps) {
 	return (
 		<Card>
 			<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
