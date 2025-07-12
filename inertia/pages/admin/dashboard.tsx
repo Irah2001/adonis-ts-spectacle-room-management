@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { CalendarDays, DollarSign, Music2, Ticket } from 'lucide-react';
 
-import { AdminMenu } from '~/components/admin-menu';
+import { AdminMenu } from '~/components/admin/menu';
 import { DashboardStat } from '~/components/dashboard-stat';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card';
 
