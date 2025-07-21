@@ -10,7 +10,6 @@ test.group('Notifications component', () => {
 			message: 'Success notification',
 		};
 
-		// We visit the page first to ensure that the flash message is set on firefox and webkit
 		await visit(route('home'));
 
 		await browserContext.setFlashMessages({
@@ -30,7 +29,6 @@ test.group('Notifications component', () => {
 			message: 'Error notification',
 		};
 
-		// We visit the page first to ensure that the flash message is set on firefox and webkit
 		await visit(route('home'));
 
 		await browserContext.setFlashMessages({
@@ -50,7 +48,6 @@ test.group('Notifications component', () => {
 			message: 'Info notification',
 		};
 
-		// We visit the page first to ensure that the flash message is set on firefox and webkit
 		await visit(route('home'));
 
 		await browserContext.setFlashMessages({
@@ -70,7 +67,6 @@ test.group('Notifications component', () => {
 			message: 'Warning notification',
 		};
 
-		// We visit the page first to ensure that the flash message is set on firefox and webkit
 		await visit(route('home'));
 
 		await browserContext.setFlashMessages({
@@ -94,7 +90,6 @@ test.group('Notifications component', () => {
 			actionBody: { test: 'test' },
 		};
 
-		// We visit the page first to ensure that the flash message is set on firefox and webkit
 		await visit(route('home'));
 
 		await browserContext.setFlashMessages({
@@ -121,7 +116,6 @@ test.group('Notifications component', () => {
 			actionBody: { test: 'test' },
 		};
 
-		// We visit the page first to ensure that the flash message is set on firefox and webkit
 		await visit(route('home'));
 
 		await browserContext.setFlashMessages({

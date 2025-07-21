@@ -16,7 +16,6 @@ test.group('Auth logout', (group) => {
 	test('Home page show logout button when logged in', async ({ visit, route, browserContext }) => {
 		hash.fake();
 
-		// We visit the page first to ensure that the session cookie is set on firefox and webkit
 		await visit(route('home'));
 
 		const user = await UserFactory.apply('verified').create();
@@ -39,7 +38,6 @@ test.group('Auth logout', (group) => {
 	test('Show confirmation message when submitting the form', async ({ visit, route, browserContext }) => {
 		hash.fake();
 
-		// We visit the page first to ensure that the session cookie is set on firefox and webkit
 		await visit(route('home'));
 
 		const user = await UserFactory.apply('verified').create();

@@ -118,7 +118,6 @@ test.group('Auth login', (group) => {
 	test("Home page don't show login button when logged in", async ({ visit, route, browserContext }) => {
 		hash.fake();
 
-		// We visit the page first to ensure that the session cookie is set on firefox and webkit
 		await visit(route('home'));
 
 		const user = await UserFactory.apply('verified').create();
@@ -139,7 +138,6 @@ test.group('Auth login', (group) => {
 	}) => {
 		hash.fake();
 
-		// We visit the page first to ensure that the session cookie is set on firefox and webkit
 		await visit(route('home'));
 
 		const user = await UserFactory.apply('verified').create();

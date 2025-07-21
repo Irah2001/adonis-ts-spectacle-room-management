@@ -113,7 +113,6 @@ export default function Artists({ artists }: InferPageProps<ArtistsController, '
 				</div>
 			</div>
 
-			{/* Edit Artist Dialog */}
 			{editingArtist && (
 				<Dialog open={!!editingArtist} onOpenChange={() => setEditingArtist(null)}>
 					<DialogContent className="sm:max-w-[425px]">
