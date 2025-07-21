@@ -8,7 +8,7 @@ export default class Participant extends BaseModel {
 	@column({ isPrimary: true })
 	declare id: number;
 
-	@column()
+	@column({ columnName: 'business_name' })
 	declare businessName: string;
 
 	@column()
@@ -17,7 +17,7 @@ export default class Participant extends BaseModel {
 	@column()
 	declare email: string;
 
-	@column()
+	@column({ columnName: 'phone_number' })
 	declare phoneNumber: string;
 
 	@hasMany(() => Event)

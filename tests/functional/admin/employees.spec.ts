@@ -36,7 +36,6 @@ test.group('Admin employees', (group) => {
 		const user = await UserFactory.create();
 		await giveUserPermissions(user, ['admin.employees.view']);
 
-		// Create some test employees
 		const employees = await EmployeeFactory.createMany(3);
 
 		const response = await client.get(route('admin.employees.render')).loginAs(user).withInertia();

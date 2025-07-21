@@ -19,6 +19,18 @@ router
 			.get('/artists', [ArtistsController, 'render'])
 			.middleware(middleware.acl({ permission: 'admin.artists.view' }))
 			.as('artists.render');
+		router
+			.put('/artists', [ArtistsController, 'create'])
+			.middleware(middleware.acl({ permission: 'admin.artists.create' }))
+			.as('artists.create');
+		router
+			.patch('/artists/:id', [ArtistsController, 'update'])
+			.middleware(middleware.acl({ permission: 'admin.artists.update' }))
+			.as('artists.update');
+		router
+			.delete('/artists/:id', [ArtistsController, 'delete'])
+			.middleware(middleware.acl({ permission: 'admin.artists.delete' }))
+			.as('artists.delete');
 
 		router
 			.group(() => {
