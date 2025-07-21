@@ -279,7 +279,7 @@ test.group('Admin artists page', (group) => {
 		const user = await UserFactory.apply('verified').create();
 		await giveUserPermissions(user, ['admin.artists.view', 'admin.artists.delete']);
 
-		const participant = await ParticipantFactory.create();
+		const participant = await ParticipantFactory.apply('MusicBand').create();
 
 		await browserContext.loginAs(user);
 
