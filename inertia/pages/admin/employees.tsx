@@ -1,9 +1,15 @@
 import { useState } from 'react';
 
+import type { InferPageProps } from '@adonisjs/inertia/types';
 import { addDays, format } from 'date-fns';
 import { ClipboardList, Plus, Search } from 'lucide-react';
 
+import type EmployeesController from '#controllers/admin/employees-controller';
+import { EMPLOYEE_POSITIONS } from '#types/employee';
+
 import { AdminMenu } from '~/components/admin/menu';
+import { CreateEmployeeForm } from '~/components/forms/create-employee-form';
+import { EditEmployeeForm } from '~/components/forms/edit-employee-form';
 import { Button } from '~/components/ui/button';
 import { Calendar } from '~/components/ui/calendar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card';
@@ -22,61 +28,27 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
 import { Textarea } from '~/components/ui/textarea';
 
-export default function Employees() {
+export default function Employees({ employees }: InferPageProps<EmployeesController, 'render'>) {
 	const [date, setDate] = useState<Date | undefined>(new Date());
 	const [isEmployeeDialogOpen, setIsEmployeeDialogOpen] = useState(false);
+	const [isEditEmployeeDialogOpen, setIsEditEmployeeDialogOpen] = useState(false);
+	const [selectedEmployee, setSelectedEmployee] = useState<(typeof employees)[0] | null>(null);
 	const [isAssignmentDialogOpen, setIsAssignmentDialogOpen] = useState(false);
 
-	const employees = [
-		{
-			id: 1,
-			name: 'John Smith',
-			position: 'Sound Engineer',
-			email: 'john.smith@example.com',
-			phone: '+1 (555) 123-4567',
-			status: 'Active',
-		},
-		{
-			id: 2,
-			name: 'Emily Johnson',
-			position: 'Lighting Technician',
-			email: 'emily.johnson@example.com',
-			phone: '+1 (555) 234-5678',
-			status: 'Active',
-		},
-		{
-			id: 3,
-			name: 'Michael Brown',
-			position: 'Security',
-			email: 'michael.brown@example.com',
-			phone: '+1 (555) 345-6789',
-			status: 'Active',
-		},
-		{
-			id: 4,
-			name: 'Sarah Davis',
-			position: 'Bartender',
-			email: 'sarah.davis@example.com',
-			phone: '+1 (555) 456-7890',
-			status: 'Active',
-		},
-		{
-			id: 5,
-			name: 'David Wilson',
-			position: 'Stage Manager',
-			email: 'david.wilson@example.com',
-			phone: '+1 (555) 567-8901',
-			status: 'Active',
-		},
-		{
-			id: 6,
-			name: 'Jessica Martinez',
-			position: 'Box Office',
-			email: 'jessica.martinez@example.com',
-			phone: '+1 (555) 678-9012',
-			status: 'Active',
-		},
-	];
+	const handleEditEmployee = (employee: (typeof employees)[0]) => {
+		setSelectedEmployee(employee);
+		setIsEditEmployeeDialogOpen(true);
+	};
+
+	const handleEditSuccess = () => {
+		setIsEditEmployeeDialogOpen(false);
+		setSelectedEmployee(null);
+	};
+
+	const handleEditCancel = () => {
+		setIsEditEmployeeDialogOpen(false);
+		setSelectedEmployee(null);
+	};
 
 	const events = [
 		{
@@ -236,48 +208,27 @@ export default function Employees() {
 											<DialogTitle>Add New Employee</DialogTitle>
 											<DialogDescription>Enter the details for the new employee.</DialogDescription>
 										</DialogHeader>
-										<div className="grid gap-4 py-4">
-											<div className="grid gap-2">
-												<Label htmlFor="employee-name">Full Name</Label>
-												<Input id="employee-name" placeholder="Enter employee name" />
-											</div>
-											<div className="grid gap-2">
-												<Label htmlFor="position">Position</Label>
-												<Select>
-													<SelectTrigger id="position">
-														<SelectValue placeholder="Select position" />
-													</SelectTrigger>
-													<SelectContent>
-														<SelectItem value="sound-engineer">Sound Engineer</SelectItem>
-														<SelectItem value="lighting-technician">Lighting Technician</SelectItem>
-														<SelectItem value="security">Security</SelectItem>
-														<SelectItem value="bartender">Bartender</SelectItem>
-														<SelectItem value="stage-manager">Stage Manager</SelectItem>
-														<SelectItem value="box-office">Box Office</SelectItem>
-													</SelectContent>
-												</Select>
-											</div>
-											<div className="grid grid-cols-2 gap-4">
-												<div className="grid gap-2">
-													<Label htmlFor="email">Email</Label>
-													<Input id="email" type="email" placeholder="email@example.com" />
-												</div>
-												<div className="grid gap-2">
-													<Label htmlFor="phone">Phone</Label>
-													<Input id="phone" placeholder="+1 (555) 123-4567" />
-												</div>
-											</div>
-											<div className="grid gap-2">
-												<Label htmlFor="notes">Notes</Label>
-												<Textarea id="notes" placeholder="Additional notes about the employee" />
-											</div>
+										<div className="py-4">
+											<CreateEmployeeForm onSuccess={() => setIsEmployeeDialogOpen(false)} />
 										</div>
-										<DialogFooter>
-											<Button variant="outline" onClick={() => setIsEmployeeDialogOpen(false)}>
-												Cancel
-											</Button>
-											<Button onClick={() => setIsEmployeeDialogOpen(false)}>Save Employee</Button>
-										</DialogFooter>
+									</DialogContent>
+								</Dialog>
+
+								<Dialog open={isEditEmployeeDialogOpen} onOpenChange={setIsEditEmployeeDialogOpen}>
+									<DialogContent className="sm:max-w-[425px]">
+										<DialogHeader>
+											<DialogTitle>Edit Employee</DialogTitle>
+											<DialogDescription>Update the employee details.</DialogDescription>
+										</DialogHeader>
+										<div className="py-4">
+											{selectedEmployee && (
+												<EditEmployeeForm
+													employee={selectedEmployee}
+													onSuccess={handleEditSuccess}
+													onCancel={handleEditCancel}
+												/>
+											)}
+										</div>
 									</DialogContent>
 								</Dialog>
 
@@ -303,7 +254,7 @@ export default function Employees() {
 													<SelectContent>
 														{employees.map((employee) => (
 															<SelectItem key={employee.id} value={employee.id.toString()}>
-																{employee.name} - {employee.position}
+																{employee.firstName} {employee.lastName} - {employee.position}
 															</SelectItem>
 														))}
 													</SelectContent>
@@ -374,12 +325,11 @@ export default function Employees() {
 											</SelectTrigger>
 											<SelectContent>
 												<SelectItem value="all">All Positions</SelectItem>
-												<SelectItem value="sound-engineer">Sound Engineer</SelectItem>
-												<SelectItem value="lighting-technician">Lighting Technician</SelectItem>
-												<SelectItem value="security">Security</SelectItem>
-												<SelectItem value="bartender">Bartender</SelectItem>
-												<SelectItem value="stage-manager">Stage Manager</SelectItem>
-												<SelectItem value="box-office">Box Office</SelectItem>
+												{EMPLOYEE_POSITIONS.map((position) => (
+													<SelectItem key={position} value={position}>
+														{position}
+													</SelectItem>
+												))}
 											</SelectContent>
 										</Select>
 									</div>
@@ -390,26 +340,22 @@ export default function Employees() {
 											<TableHeader>
 												<TableRow>
 													<TableHead>Name</TableHead>
-													<TableHead>Position</TableHead>
-													<TableHead>Contact</TableHead>
-													<TableHead>Status</TableHead>
+													<TableHead>Function</TableHead>
+													<TableHead>Created</TableHead>
 													<TableHead>Actions</TableHead>
 												</TableRow>
 											</TableHeader>
 											<TableBody>
 												{employees.map((employee) => (
 													<TableRow key={employee.id}>
-														<TableCell className="font-medium">{employee.name}</TableCell>
-														<TableCell>{employee.position}</TableCell>
-														<TableCell>{employee.email}</TableCell>
-														<TableCell>
-															<div className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
-																{employee.status}
-															</div>
+														<TableCell className="font-medium">
+															{employee.firstName} {employee.lastName}
 														</TableCell>
+														<TableCell>{employee.position}</TableCell>
+														<TableCell>{new Date(employee.createdAt).toLocaleDateString()}</TableCell>
 														<TableCell>
 															<div className="flex items-center gap-2">
-																<Button variant="ghost" size="sm">
+																<Button variant="ghost" size="sm" onClick={() => handleEditEmployee(employee)}>
 																	Edit
 																</Button>
 																<Button variant="ghost" size="sm">
@@ -472,7 +418,9 @@ export default function Employees() {
 
 													return (
 														<TableRow key={assignment.id}>
-															<TableCell className="font-medium">{employee?.name}</TableCell>
+															<TableCell className="font-medium">
+																{employee?.firstName} {employee?.lastName}
+															</TableCell>
 															<TableCell>{event?.title}</TableCell>
 															<TableCell>{assignment.role}</TableCell>
 															<TableCell>

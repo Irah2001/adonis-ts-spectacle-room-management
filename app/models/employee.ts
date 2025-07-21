@@ -15,7 +15,7 @@ export default class Employee extends BaseModel {
 	declare lastName: string;
 
 	@column()
-	declare function: string;
+	declare position: string;
 
 	@hasMany(() => Task)
 	declare tasks: relations.HasMany<typeof Task>;

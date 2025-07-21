@@ -19,10 +19,25 @@ router
 			.get('/artists', [ArtistsController, 'render'])
 			.middleware(middleware.acl({ permission: 'admin.artists.view' }))
 			.as('artists.render');
+
 		router
-			.get('/employees', [EmployeesController, 'render'])
-			.middleware(middleware.acl({ permission: 'admin.employees.view' }))
-			.as('employees.render');
+			.group(() => {
+				router
+					.get('/', [EmployeesController, 'render'])
+					.middleware(middleware.acl({ permission: 'admin.employees.view' }))
+					.as('render');
+				router
+					.put('/', [EmployeesController, 'create'])
+					.middleware(middleware.acl({ permission: 'admin.employees.create' }))
+					.as('create');
+				router
+					.patch('/:id', [EmployeesController, 'update'])
+					.middleware(middleware.acl({ permission: 'admin.employees.update' }))
+					.as('update');
+			})
+			.prefix('employees')
+			.as('employees');
+
 		router
 			.get('/tickets', [TicketsController, 'render'])
 			.middleware(middleware.acl({ permission: 'admin.tickets.view' }))
