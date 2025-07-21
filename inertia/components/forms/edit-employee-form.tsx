@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
-
 import { vineResolver } from '@hookform/resolvers/vine';
-import { router, usePage } from '@inertiajs/react';
+import { router } from '@inertiajs/react';
 import { route } from '@izzyjs/route/client';
 import { useForm } from 'react-hook-form';
 
@@ -28,8 +26,6 @@ interface EditEmployeeFormProps {
 }
 
 export function EditEmployeeForm({ employee, onSuccess, onCancel }: EditEmployeeFormProps) {
-	const pageProps = usePage().props;
-
 	const form = useForm<UpdateEmployeeSchema>({
 		resolver: vineResolver(updateEmployeeValidator),
 		defaultValues: {
@@ -38,21 +34,6 @@ export function EditEmployeeForm({ employee, onSuccess, onCancel }: EditEmployee
 			position: employee.position as UpdateEmployeeSchema['position'],
 		},
 	});
-
-	useEffect(() => {
-		if (pageProps.notification) {
-			const notification = pageProps.notification as { type: string; message: string };
-
-			handleNotification({
-				type: notification.type as NotificationType,
-				message: notification.message,
-			});
-
-			if (notification.type === 'success' && onSuccess) {
-				onSuccess();
-			}
-		}
-	}, [pageProps.notification, onSuccess]);
 
 	const onSubmit = (data: UpdateEmployeeSchema) => {
 		router.patch(route('admin.employees.update', { params: { id: employee.id } }).path, data, {
