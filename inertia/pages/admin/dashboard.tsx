@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { CalendarDays, DollarSign, Music2, Ticket } from 'lucide-react';
+import { CalendarDays, DollarSign, Ticket, Users } from 'lucide-react';
 
 import { AdminDashboardStat } from '~/components/admin/dashboard/stat';
 import { AdminMenu } from '~/components/admin/menu';
@@ -110,7 +110,7 @@ export default function Dashboard() {
 								description="3 events this week"
 							/>
 							<AdminDashboardStat title="Tickets Sold" value="2,350" Icon={Ticket} description="+15% from last month" />
-							<AdminDashboardStat title="Active Artists" value="24" Icon={Music2} description="5 new this month" />
+							<AdminDashboardStat title="Active Artists" value="24" Icon={Users} description="5 new this month" />
 						</div>
 						<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
 							<Card className="col-span-4">

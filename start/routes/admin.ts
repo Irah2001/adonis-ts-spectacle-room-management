@@ -5,6 +5,7 @@ import { middleware } from '../kernel.js';
 const DashboardController = () => import('#controllers/admin/dashboard-controller');
 const ArtistsController = () => import('#controllers/admin/artists-controller');
 const EmployeesController = () => import('#controllers/admin/employees-controller');
+const RoomsController = () => import('#controllers/admin/rooms-controller');
 const TicketsController = () => import('#controllers/admin/tickets-controller');
 const BookingsController = () => import('#controllers/admin/bookings-controller');
 const InvoicesController = () => import('#controllers/admin/invoices-controller');
@@ -49,6 +50,28 @@ router
 			})
 			.prefix('employees')
 			.as('employees');
+
+		router
+			.group(() => {
+				router
+					.get('/', [RoomsController, 'render'])
+					.middleware(middleware.acl({ permission: 'admin.rooms.view' }))
+					.as('render');
+				router
+					.put('/', [RoomsController, 'create'])
+					.middleware(middleware.acl({ permission: 'admin.rooms.create' }))
+					.as('create');
+				router
+					.patch('/:id', [RoomsController, 'update'])
+					.middleware(middleware.acl({ permission: 'admin.rooms.update' }))
+					.as('update');
+				router
+					.delete('/:id', [RoomsController, 'delete'])
+					.middleware(middleware.acl({ permission: 'admin.rooms.delete' }))
+					.as('delete');
+			})
+			.prefix('rooms')
+			.as('rooms');
 
 		router
 			.get('/tickets', [TicketsController, 'render'])
