@@ -9,6 +9,7 @@ const RoomsController = () => import('#controllers/admin/rooms-controller');
 const TicketsController = () => import('#controllers/admin/tickets-controller');
 const BookingsController = () => import('#controllers/admin/bookings-controller');
 const InvoicesController = () => import('#controllers/admin/invoices-controller');
+const EventsController = () => import('#controllers/admin/events-controller');
 
 router
 	.group(() => {
@@ -32,6 +33,28 @@ router
 			.delete('/artists/:id', [ArtistsController, 'delete'])
 			.middleware(middleware.acl({ permission: 'admin.artists.delete' }))
 			.as('artists.delete');
+
+		router
+			.group(() => {
+				router
+					.get('/', [EventsController, 'render'])
+					.middleware(middleware.acl({ permission: 'admin.events.view' }))
+					.as('render');
+				router
+					.put('/', [EventsController, 'create'])
+					.middleware(middleware.acl({ permission: 'admin.events.create' }))
+					.as('create');
+				router
+					.patch('/:id', [EventsController, 'update'])
+					.middleware(middleware.acl({ permission: 'admin.events.update' }))
+					.as('update');
+				router
+					.delete('/:id', [EventsController, 'delete'])
+					.middleware(middleware.acl({ permission: 'admin.events.delete' }))
+					.as('delete');
+			})
+			.prefix('events')
+			.as('events');
 
 		router
 			.group(() => {

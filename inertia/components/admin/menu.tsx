@@ -1,5 +1,5 @@
 import { route } from '@izzyjs/route/client';
-import { CalendarDays, CreditCard, LayoutDashboard, Theater, Ticket, Users } from 'lucide-react';
+import { CalendarDays, CreditCard, LayoutDashboard, PartyPopper, Theater, Ticket, Users } from 'lucide-react';
 
 import { AdminMenuLink } from './menu-link';
 
@@ -14,6 +14,10 @@ export function AdminMenu() {
 				<AdminMenuLink href={route('admin.bookings.render').path}>
 					<CalendarDays className="h-4 w-4" />
 					Booking Calendar
+				</AdminMenuLink>
+				<AdminMenuLink href={route('admin.events.render').path}>
+					<PartyPopper className="h-4 w-4" />
+					Event Management
 				</AdminMenuLink>
 				<AdminMenuLink href={route('admin.artists.render').path}>
 					<Users className="h-4 w-4" />
