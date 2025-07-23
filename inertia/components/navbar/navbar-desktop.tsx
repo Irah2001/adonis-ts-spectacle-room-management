@@ -18,7 +18,7 @@ export function NavbarDesktop() {
 					</NavigationMenuLink>
 				</NavigationMenuItem>
 				<NavigationMenuItem>
-					<NavigationMenuLink className={navigationMenuTriggerStyle()} href="#">
+					<NavigationMenuLink className={navigationMenuTriggerStyle()} href={route('events').path}>
 						Events
 					</NavigationMenuLink>
 				</NavigationMenuItem>
@@ -28,7 +28,7 @@ export function NavbarDesktop() {
 					</NavigationMenuLink>
 				</NavigationMenuItem>
 				<NavigationMenuItem>
-					<NavigationMenuLink className={navigationMenuTriggerStyle()} href="#">
+					<NavigationMenuLink className={navigationMenuTriggerStyle()} href={route('artists').path}>
 						Artists
 					</NavigationMenuLink>
 				</NavigationMenuItem>

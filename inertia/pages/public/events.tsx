@@ -25,146 +25,44 @@ import { Input } from '~/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '~/components/ui/tabs';
 
-export default function Events() {
-	const events = [
-		{
-			id: 1,
-			title: 'Summer Rock Festival',
-			image: '/placeholder.svg?height=400&width=600',
-			dates: [
-				{ date: 'Oct 15, 2023', time: '20:00 - 22:00' },
-				{ date: 'Oct 16, 2023', time: '20:00 - 22:00' },
-				{ date: 'Oct 17, 2023', time: '19:00 - 21:00' },
-			],
-			venue: 'Main Hall',
-			artist: 'The Electric Waves',
-			price: '$50.00',
-			genre: 'Rock',
-			type: 'music',
-			isLive: true,
-			description: 'Join us for an unforgettable night of rock music featuring The Electric Waves and special guests.',
-		},
-		{
-			id: 2,
-			title: 'Jazz Night',
-			image: '/placeholder.svg?height=400&width=600',
-			dates: [
-				{ date: 'Oct 18, 2023', time: '20:00 - 22:30' },
-				{ date: 'Oct 19, 2023', time: '20:00 - 22:30' },
-			],
-			venue: 'Jazz Club',
-			artist: 'Jazz Collective',
-			price: '$35.00',
-			genre: 'Jazz',
-			type: 'music',
-			isLive: true,
-			description: 'Experience the smooth sounds of Jazz Collective in an intimate setting at our renowned Jazz Club.',
-		},
-		{
-			id: 3,
-			title: 'Electronic Dance Party',
-			image: '/placeholder.svg?height=400&width=600',
-			dates: [{ date: 'Oct 20, 2023', time: '22:00 - 02:00' }],
-			venue: 'Club Space',
-			artist: 'Electronic Dreams',
-			price: '$40.00',
-			genre: 'Electronic',
-			type: 'music',
-			isLive: true,
-			description: 'Dance the night away with Electronic Dreams and their immersive audio-visual experience.',
-		},
-		{
-			id: 4,
-			title: 'Romeo and Juliet',
-			image: '/placeholder.svg?height=400&width=600',
-			dates: [
-				{ date: 'Oct 28, 2023', time: '19:00 - 21:30' },
-				{ date: 'Oct 29, 2023', time: '19:00 - 21:30' },
-				{ date: 'Oct 30, 2023', time: '19:00 - 21:30' },
-			],
-			venue: 'Theater Hall',
-			artist: 'City Theater Company',
-			price: '$45.00',
-			genre: 'Drama',
-			type: 'theater',
-			isLive: true,
-			description: "A modern interpretation of Shakespeare's classic tale of star-crossed lovers.",
-		},
-		{
-			id: 5,
-			title: 'Cirque Fantastique',
-			image: '/placeholder.svg?height=400&width=600',
-			dates: [
-				{ date: 'Nov 5, 2023', time: '19:30 - 21:30' },
-				{ date: 'Nov 6, 2023', time: '19:30 - 21:30' },
-				{ date: 'Nov 7, 2023', time: '15:00 - 17:00' },
-			],
-			venue: 'Main Hall',
-			artist: 'International Circus Troupe',
-			price: '$55.00',
-			genre: 'Family',
-			type: 'circus',
-			isLive: true,
-			description: 'Prepare to be amazed by breathtaking acrobatics, juggling, and aerial performances.',
-		},
-		{
-			id: 6,
-			title: 'Swan Lake',
-			image: '/placeholder.svg?height=400&width=600',
-			dates: [{ date: 'Oct 25, 2023', time: '19:00 - 21:30' }],
-			venue: 'Opera House',
-			artist: 'National Ballet Company',
-			price: '$65.00',
-			genre: 'Classical',
-			type: 'dance',
-			isLive: true,
-			description:
-				"Experience the timeless beauty of Tchaikovsky's masterpiece performed by the National Ballet Company.",
-		},
-		{
-			id: 7,
-			title: 'Tech Conference 2023',
-			image: '/placeholder.svg?height=400&width=600',
-			dates: [
-				{ date: 'Nov 8, 2023', time: '09:00 - 17:00' },
-				{ date: 'Nov 9, 2023', time: '09:00 - 17:00' },
-			],
-			venue: 'Conference Center',
-			artist: 'Various Speakers',
-			price: '$120.00',
-			genre: 'Technology',
-			type: 'conference',
-			isLive: true,
-			description:
-				'Join industry leaders and innovators for two days of talks, workshops, and networking opportunities.',
-		},
-		{
-			id: 8,
-			title: 'Comedy Special: Laugh Out Loud',
-			image: '/placeholder.svg?height=400&width=600',
-			dates: [{ date: 'Nov 10, 2023', time: '20:00 - 22:00' }],
-			venue: 'Comedy Club',
-			artist: 'Jane Doe',
-			price: '$35.00',
-			genre: 'Comedy',
-			type: 'one-man-show',
-			isLive: true,
-			description: 'An evening of hilarious stand-up comedy with award-winning comedian Jane Doe.',
-		},
-		{
-			id: 9,
-			title: 'National Symphony Orchestra - Replay',
-			image: '/placeholder.svg?height=400&width=600',
-			dates: [{ date: 'Nov 15, 2023', time: '19:00 - 21:00' }],
-			venue: 'Virtual Screening Room',
-			artist: 'National Symphony Orchestra',
-			price: '$15.00',
-			genre: 'Classical',
-			type: 'music',
-			isLive: false,
-			description: "A recorded performance of the National Symphony Orchestra's acclaimed spring concert.",
-		},
-	];
+interface EventProps {
+	id: number;
+	date: string;
+	status: string;
+	seats: number;
+	description: string;
+	isReady: boolean;
+	price: number;
+	roomId: number;
+	participantId: number;
+	room: {
+		name: string;
+	};
+	participant: {
+		name: string;
+	};
+	createdAt: string;
+	updatedAt: string;
+}
+
+interface EventsProps {
+	events: EventProps[];
+}
+
+export default function Events({ events }: EventsProps) {
+	const mappedEvents = events.map((event) => ({
+		id: event.id,
+		title: event.description, // Assuming description can be used as title
+		image: '/placeholder.svg?height=400&width=600', // Placeholder image
+		dates: [{ date: new Date(event.date).toLocaleDateString(), time: new Date(event.date).toLocaleTimeString() }],
+		venue: event.room.name,
+		artist: event.participant.name,
+		price: event.price.toFixed(2),
+		genre: 'Unknown', // No genre in Event model, setting a default
+		type: 'music', // Default type, adjust if event type is added to model
+		isLive: event.status === 'live', // Assuming 'live' status means live event
+		description: event.description,
+	}));
 
 	const getEventTypeIcon = (type: string) => {
 		switch (type) {
@@ -209,7 +107,7 @@ export default function Events() {
 								<p className="text-muted-foreground">Discover and book tickets for upcoming events</p>
 							</div>
 							<div className="flex items-center gap-2">
-								<Link href="/public">
+								<Link href="/">
 									<Button variant="ghost" size="sm">
 										<ChevronLeft className="mr-1 h-4 w-4" />
 										Back to Home
@@ -305,7 +203,7 @@ export default function Events() {
 
 							<TabsContent value="grid" className="mt-0">
 								<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-									{events.map((event) => (
+									{mappedEvents.map((event) => (
 										<Card key={event.id} className="overflow-hidden">
 											<div className="relative aspect-[3/2] w-full overflow-hidden">
 												<img
@@ -367,7 +265,7 @@ export default function Events() {
 							<TabsContent value="list" className="mt-0">
 								<div className="overflow-hidden rounded-lg border">
 									<div className="divide-y">
-										{events.map((event) => (
+										{mappedEvents.map((event) => (
 											<div
 												key={event.id}
 												className="hover:bg-muted/50 flex flex-col p-4 transition-colors md:flex-row md:items-center"
