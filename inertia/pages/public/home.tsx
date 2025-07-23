@@ -1,4 +1,5 @@
 import { Link } from '@inertiajs/react';
+import { route } from '@izzyjs/route/client';
 import { CalendarDays, Clock, MapPin, Ticket } from 'lucide-react';
 
 import { Button } from '~/components/ui/button';
@@ -109,10 +110,10 @@ export default function Home() {
 							unforgettable experiences.
 						</p>
 						<div className="flex flex-col justify-center gap-4 sm:flex-row">
-							<Button size="lg" className="bg-primary hover:bg-primary/90">
-								View Upcoming Events
-							</Button>
-							<Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+							<Link href={route('events').path}>
+								<Button size="lg">View Upcoming Events</Button>
+							</Link>
+							<Button size="lg" variant="secondary">
 								Explore Venues
 							</Button>
 						</div>
@@ -163,8 +164,10 @@ export default function Home() {
 									<p className="text-muted-foreground mt-4 line-clamp-3 text-sm">{event.description}</p>
 								</CardContent>
 								<CardFooter>
-									<Link href={`/events/${event.id.toString()}`} className="w-full">
-										<Button className="w-full">View Details</Button>
+									<Link href={route('event', { params: { id: event.id } }).path} className="w-full">
+										<Button variant="default" className="w-full">
+											View Details
+										</Button>
 									</Link>
 								</CardFooter>
 							</Card>
@@ -212,7 +215,7 @@ export default function Home() {
 									</div>
 									<div className="mt-4 flex items-center gap-4 sm:mt-0">
 										<div className="text-sm font-medium">From {event.price}</div>
-										<Link href={`/events/${event.id.toString()}`} className="w-full">
+										<Link href={route('event', { params: { id: event.id } }).path} className="w-full">
 											<Button size="sm">Book Tickets</Button>
 										</Link>
 									</div>
@@ -263,9 +266,7 @@ export default function Home() {
 									<p className="text-muted-foreground text-sm">{venue.description}</p>
 								</CardContent>
 								<CardFooter>
-									<Button variant="outline" className="w-full">
-										View Venue
-									</Button>
+									<Button className="w-full">View Venue</Button>
 								</CardFooter>
 							</Card>
 						))}

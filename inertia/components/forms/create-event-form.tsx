@@ -39,7 +39,7 @@ export function CreateEventForm({
 		mode: 'onChange',
 		resolver: vineResolver(createEventValidator(false)),
 		defaultValues: {
-			date: new Date(),
+			date: new Date().toISOString(),
 			status: '',
 			seats: 0,
 			description: '',
@@ -65,6 +65,7 @@ export function CreateEventForm({
 
 	function onSubmit(data: CreateEventSchema) {
 		const dataToSend = { ...data, date: new Date(data.date).toISOString() };
+
 		router.put('/admin/events', dataToSend as unknown as Record<string, string>, {
 			onSuccess: () => {
 				form.reset();

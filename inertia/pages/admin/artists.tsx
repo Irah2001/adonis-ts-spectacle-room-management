@@ -5,7 +5,7 @@ import { router } from '@inertiajs/react';
 import { route } from '@izzyjs/route/client';
 import { Plus, Search } from 'lucide-react';
 
-import type ArtistsController from '#controllers/admin/artists-controller';
+import type AdminArtistsController from '#controllers/admin/artists-controller';
 
 import { AdminMenu } from '~/components/admin/menu';
 import { CreateArtistForm } from '~/components/forms/create-artist-form';
@@ -22,7 +22,7 @@ import {
 } from '~/components/ui/dialog';
 import { Input } from '~/components/ui/input';
 
-export default function Artists({ artists }: InferPageProps<ArtistsController, 'render'>) {
+export default function Artists({ artists }: InferPageProps<AdminArtistsController, 'render'>) {
 	const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 	const [editingArtist, setEditingArtist] = useState<(typeof artists)[0] | null>(null);
 

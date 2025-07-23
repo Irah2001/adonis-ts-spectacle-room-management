@@ -4,7 +4,7 @@ import Employee from '#models/employee';
 import type { EmployeePosition } from '#types/employee';
 import { createEmployeeValidator, updateEmployeeValidator } from '#validators/employee';
 
-export default class EmployeesController {
+export default class AdminEmployeesController {
 	async render({ inertia }: HttpContext) {
 		const employees = await Employee.all();
 		const serializedEmployees = employees.map((employee) => employee.serialize()) as {

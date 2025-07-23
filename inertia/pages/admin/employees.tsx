@@ -4,7 +4,7 @@ import type { InferPageProps } from '@adonisjs/inertia/types';
 import { addDays, format } from 'date-fns';
 import { ClipboardList, Plus, Search } from 'lucide-react';
 
-import type EmployeesController from '#controllers/admin/employees-controller';
+import type AdminEmployeesController from '#controllers/admin/employees-controller';
 import { EMPLOYEE_POSITIONS } from '#types/employee';
 
 import { AdminMenu } from '~/components/admin/menu';
@@ -28,7 +28,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table';
 import { Textarea } from '~/components/ui/textarea';
 
-export default function Employees({ employees }: InferPageProps<EmployeesController, 'render'>) {
+export default function Employees({ employees }: InferPageProps<AdminEmployeesController, 'render'>) {
 	const [date, setDate] = useState<Date | undefined>(new Date());
 	const [isEmployeeDialogOpen, setIsEmployeeDialogOpen] = useState(false);
 	const [isEditEmployeeDialogOpen, setIsEditEmployeeDialogOpen] = useState(false);

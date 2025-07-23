@@ -3,7 +3,7 @@ import type { HttpContext } from '@adonisjs/core/http';
 import Room from '#models/room';
 import { createRoomValidator, updateRoomValidator } from '#validators/room';
 
-export default class RoomsController {
+export default class AdminRoomsController {
 	async render({ inertia }: HttpContext) {
 		const rooms = await Room.all();
 		const serializedRooms = rooms.map((room) => room.serialize()) as {

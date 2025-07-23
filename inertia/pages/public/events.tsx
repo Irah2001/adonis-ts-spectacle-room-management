@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Link } from '@inertiajs/react';
+import { route } from '@izzyjs/route/client';
 import {
 	CalendarDays,
 	ChevronLeft,
@@ -253,7 +254,7 @@ export default function Events({ events }: EventsProps) {
 												</div>
 											</CardContent>
 											<CardFooter className="p-4 pt-0">
-												<Link href={`/events/${event.id.toString()}`} className="w-full">
+												<Link href={route('event', { params: { id: event.id } }).path} className="w-full">
 													<Button className="w-full">Book Tickets</Button>
 												</Link>
 											</CardFooter>
@@ -320,7 +321,7 @@ export default function Events({ events }: EventsProps) {
 												</div>
 												<div className="mt-4 flex items-center gap-4 md:mt-0 md:ml-4">
 													<div className="text-sm font-medium">From {event.price}</div>
-													<Link href={`/events/${event.id.toString()}`}>
+													<Link href={route('event', { params: { id: event.id } }).path}>
 														<Button size="sm">Book Tickets</Button>
 													</Link>
 												</div>

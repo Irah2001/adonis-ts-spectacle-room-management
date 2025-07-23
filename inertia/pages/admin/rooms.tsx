@@ -5,7 +5,7 @@ import { router } from '@inertiajs/react';
 import { route } from '@izzyjs/route/client';
 import { Plus, Search } from 'lucide-react';
 
-import type roomsController from '#controllers/admin/rooms-controller';
+import type AdminRoomsController from '#controllers/admin/rooms-controller';
 
 import { AdminMenu } from '~/components/admin/menu';
 import { CreateRoomForm } from '~/components/forms/create-room-form';
@@ -22,7 +22,7 @@ import {
 } from '~/components/ui/dialog';
 import { Input } from '~/components/ui/input';
 
-export default function Rooms({ rooms }: InferPageProps<roomsController, 'render'>) {
+export default function Rooms({ rooms }: InferPageProps<AdminRoomsController, 'render'>) {
 	const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 	const [editingRoom, setEditingRoom] = useState<(typeof rooms)[0] | null>(null);
 

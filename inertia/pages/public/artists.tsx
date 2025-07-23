@@ -1,26 +1,13 @@
-import React from 'react';
-
+import type { InferPageProps } from '@adonisjs/inertia/types';
 import { Link } from '@inertiajs/react';
 import { ChevronLeft } from 'lucide-react';
+
+import type PublicArtistsController from '#controllers/public/artists-controller';
 
 import { Button } from '~/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card';
 
-interface ArtistProps {
-	id: number;
-	businessName: string;
-	siret: string;
-	email: string;
-	phoneNumber: string;
-	createdAt: string;
-	updatedAt: string;
-}
-
-interface ArtistsProps {
-	artists: ArtistProps[];
-}
-
-export default function Artists({ artists }: ArtistsProps) {
+export default function Artists({ artists }: InferPageProps<PublicArtistsController, 'render'>) {
 	return (
 		<div className="flex min-h-screen w-full flex-col">
 			<main className="flex-1">

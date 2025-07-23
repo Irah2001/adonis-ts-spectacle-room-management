@@ -1,8 +1,10 @@
+import type { InferPageProps } from '@adonisjs/inertia/types';
 import { vineResolver } from '@hookform/resolvers/vine';
 import { router } from '@inertiajs/react';
 import { route } from '@izzyjs/route/client';
 import { useForm } from 'react-hook-form';
 
+import type AdminEventsController from '#controllers/admin/events-controller';
 import { NotificationType } from '#types/notification';
 import { updateEventValidator, type UpdateEventSchema } from '#validators/event';
 
@@ -14,31 +16,12 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '../ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 
-interface RoomData {
-	id: number;
-	name: string;
-}
-interface ParticipantData {
-	id: number;
-	businessName: string;
-}
-
 interface EditEventFormProps {
-	event: {
-		id: number;
-		date: Date;
-		status: string;
-		seats: number;
-		description: string;
-		isReady: boolean;
-		price: number;
-		roomId: number;
-		participantId: number;
-	};
+	event: InferPageProps<AdminEventsController, 'render'>['events'][0];
 	onSuccess?: () => void;
 	onCancel?: () => void;
-	rooms: RoomData[];
-	participants: ParticipantData[];
+	rooms: InferPageProps<AdminEventsController, 'render'>['rooms'];
+	participants: InferPageProps<AdminEventsController, 'render'>['participants'];
 }
 
 export function EditEventForm({ event, onSuccess, onCancel, rooms, participants }: EditEventFormProps) {
@@ -88,7 +71,7 @@ export function EditEventForm({ event, onSuccess, onCancel, rooms, participants 
 												type="date"
 												required
 												{...field}
-												value={field.value ? new Date(field.value).toISOString().split('T')[0] : ''}
+												value={field.value ? new Date(field.value).toISOString() : ''}
 												onChange={(event_) => field.onChange(event_.target.value)}
 											/>
 										</FormControl>

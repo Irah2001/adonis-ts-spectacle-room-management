@@ -6,7 +6,7 @@ import Participant from '#models/participant';
 import Room from '#models/room';
 import { createEventValidator, updateEventValidator } from '#validators/event';
 
-export default class EventsController {
+export default class AdminEventsController {
 	async render({ inertia }: HttpContext) {
 		const events = await Event.query().preload('room').preload('participant').orderBy('date', 'asc');
 		const rooms = await Room.all();
@@ -22,16 +22,44 @@ export default class EventsController {
 			price: number;
 			roomId: number;
 			participantId: number;
+			room: {
+				id: number;
+				name: string;
+				address: string;
+				capacity: number;
+			};
+			participant: {
+				id: number;
+				businessName: string;
+				siret: string;
+				email: string;
+				phoneNumber: string;
+			};
 			createdAt: string;
 			updatedAt: string;
-			room?: Room;
-			participant?: Participant;
+		}[];
+		const serializedRooms = rooms.map((room) => room.serialize()) as {
+			id: number;
+			name: string;
+			address: string;
+			capacity: number;
+			createdAt: string;
+			updatedAt: string;
+		}[];
+		const serializedParticipants = participants.map((participant) => participant.serialize()) as {
+			id: number;
+			businessName: string;
+			siret: string;
+			email: string;
+			phoneNumber: string;
+			createdAt: string;
+			updatedAt: string;
 		}[];
 
 		return inertia.render('admin/events', {
 			events: serializedEvents,
-			rooms: rooms.map((room) => room.serialize()),
-			participants: participants.map((participant) => participant.serialize()),
+			rooms: serializedRooms,
+			participants: serializedParticipants,
 		});
 	}
 
@@ -39,7 +67,7 @@ export default class EventsController {
 		const data = await request.validateUsing(createEventValidator(true));
 
 		try {
-			await Event.create({ ...data, date: DateTime.fromJSDate(data.date) });
+			await Event.create({ ...data, date: DateTime.fromISO(data.date) });
 
 			session.flash('notification', {
 				type: 'success',
@@ -60,7 +88,7 @@ export default class EventsController {
 		const data = await request.validateUsing(updateEventValidator(true));
 
 		try {
-			event.merge({ ...data, date: data.date ? DateTime.fromJSDate(data.date) : undefined });
+			event.merge({ ...data, date: data.date ? DateTime.fromISO(data.date) : undefined });
 			await event.save();
 
 			session.flash('notification', {

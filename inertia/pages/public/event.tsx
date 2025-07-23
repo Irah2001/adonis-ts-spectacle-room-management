@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { Link } from '@inertiajs/react';
+import { route } from '@izzyjs/route/client';
 import {
 	CalendarDays,
 	ChevronLeft,
@@ -412,7 +413,7 @@ Supporting acts include The Amplifiers and Sound Wave, two up-and-coming bands t
 										/>
 									</div>
 									<CardHeader className="p-4">
-										<CardTitle className="text-lg">Related Event {id}</CardTitle>
+										<CardTitle className="text-lg">Related Event {eventId}</CardTitle>
 										<CardDescription>Artist Name</CardDescription>
 									</CardHeader>
 									<CardContent className="p-4 pt-0">
@@ -428,7 +429,7 @@ Supporting acts include The Amplifiers and Sound Wave, two up-and-coming bands t
 										</div>
 									</CardContent>
 									<CardFooter className="p-4 pt-0">
-										<Link href={`/events/${(10 + eventId).toString()}`} className="w-full">
+										<Link href={route('event', { params: { id: 10 + eventId } }).path} className="w-full">
 											<Button variant="outline" className="w-full">
 												View Event
 											</Button>

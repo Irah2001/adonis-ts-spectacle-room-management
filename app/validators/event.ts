@@ -10,10 +10,7 @@ export const createEventValidator = (server: boolean) => {
 
 	return vine.compile(
 		vine.object({
-			date: vine.string().transform((value) => {
-				const date = new Date(value);
-				return date;
-			}),
+			date: vine.string(),
 			status: vine.string(),
 			seats: vine.number().min(0),
 			description: vine.string(),
@@ -22,12 +19,14 @@ export const createEventValidator = (server: boolean) => {
 			roomId: server
 				? roomId.exists(async (database, value) => {
 						const room = (await database.from('rooms').where('id', value).first()) as Room | null;
+
 						return !!room;
 					})
 				: roomId,
 			participantId: server
 				? participantId.exists(async (database, value) => {
 						const participant = (await database.from('participants').where('id', value).first()) as Participant | null;
+
 						return !!participant;
 					})
 				: participantId,
@@ -42,37 +41,26 @@ export const updateEventValidator = (server: boolean) => {
 
 	return vine.compile(
 		vine.object({
-			date: vine
-				.string()
-				.transform((value) => {
-					const date = new Date(value);
-					return date;
-				})
-				.optional(),
-			status: vine.string().optional(),
-			seats: vine.number().min(0).optional(),
-			description: vine.string().optional(),
-			isReady: vine.boolean().optional(),
-			price: vine.number().min(0).optional(),
+			date: vine.string(),
+			status: vine.string(),
+			seats: vine.number().min(0),
+			description: vine.string(),
+			isReady: vine.boolean(),
+			price: vine.number().min(0),
 			roomId: server
-				? roomId
-						.exists(async (database, value) => {
-							const room = (await database.from('rooms').where('id', value).first()) as Room | null;
-							return !!room;
-						})
-						.optional()
-				: roomId.optional(),
+				? roomId.exists(async (database, value) => {
+						const room = (await database.from('rooms').where('id', value).first()) as Room | null;
+
+						return !!room;
+					})
+				: roomId,
 			participantId: server
-				? participantId
-						.exists(async (database, value) => {
-							const participant = (await database
-								.from('participants')
-								.where('id', value)
-								.first()) as Participant | null;
-							return !!participant;
-						})
-						.optional()
-				: participantId.optional(),
+				? participantId.exists(async (database, value) => {
+						const participant = (await database.from('participants').where('id', value).first()) as Participant | null;
+
+						return !!participant;
+					})
+				: participantId,
 		}),
 	);
 };

@@ -6,7 +6,7 @@ import { route } from '@izzyjs/route/client';
 import { format } from 'date-fns';
 import { Plus, Search } from 'lucide-react';
 
-import type EventsController from '#controllers/admin/events-controller';
+import type AdminEventsController from '#controllers/admin/events-controller';
 
 import { AdminMenu } from '~/components/admin/menu';
 import { CreateEventForm } from '~/components/forms/create-event-form';
@@ -37,7 +37,7 @@ export default function Events({
 	events,
 	rooms,
 	participants,
-}: InferPageProps<EventsController, 'render'> & { rooms: RoomData[]; participants: ParticipantData[] }) {
+}: InferPageProps<AdminEventsController, 'render'> & { rooms: RoomData[]; participants: ParticipantData[] }) {
 	const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 	const [editingEvent, setEditingEvent] = useState<(typeof events)[0] | null>(null);
 
@@ -119,15 +119,13 @@ export default function Events({
 												<span className="font-medium">Price:</span> {event.price}
 											</div>
 											<div className="text-sm">
-												<span className="font-medium">Room:</span> {event.room ? event.room.name : 'N/A'}
+												<span className="font-medium">Room:</span> {event.room.name}
 											</div>
 											<div className="text-sm">
-												<span className="font-medium">Participant:</span>{' '}
-												{event.participant ? event.participant.businessName : 'N/A'}
+												<span className="font-medium">Participant:</span> {event.participant.businessName}
 											</div>
 											<div className="text-sm">
-												<span className="font-medium">Created:</span>{' '}
-												{event.createdAt ? format(new Date(event.createdAt), 'PPP') : 'N/A'}
+												<span className="font-medium">Created:</span> {format(new Date(event.createdAt), 'PPP')}
 											</div>
 										</div>
 									</CardContent>

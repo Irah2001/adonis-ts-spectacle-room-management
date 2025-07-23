@@ -3,7 +3,7 @@ import type { HttpContext } from '@adonisjs/core/http';
 import Participant from '#models/participant';
 import { createParticipantValidator, updateParticipantValidator } from '#validators/participant';
 
-export default class ArtistsController {
+export default class AdminArtistsController {
 	async render({ inertia }: HttpContext) {
 		const artists = await Participant.query().orderBy('businessName', 'asc');
 		const serializedArtists = artists.map((artist) => artist.serialize()) as {
