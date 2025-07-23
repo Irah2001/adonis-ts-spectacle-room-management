@@ -68,8 +68,6 @@ export function EditRoomForm({ room, onSuccess, onCancel }: EditRoomFormProps) {
 		});
 	}
 
-	const disableSubmit = !form.formState.isValid || Object.keys(form.formState.errors).length > 0;
-
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
@@ -132,8 +130,8 @@ export function EditRoomForm({ room, onSuccess, onCancel }: EditRoomFormProps) {
 							<Button type="button" variant="outline" onClick={onCancel} className="flex-1">
 								Cancel
 							</Button>
-							<Button type="submit" className="flex-1" disabled={disableSubmit}>
-								Update Room
+							<Button type="submit" disabled={form.formState.isSubmitting}>
+								{form.formState.isSubmitting ? 'Updating...' : 'Update Room'}
 							</Button>
 						</div>
 					</div>

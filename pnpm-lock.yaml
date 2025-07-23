@@ -50,6 +50,9 @@ importers:
       '@inertiajs/react':
         specifier: ^2.0.14
         version: 2.0.14(react@19.1.0)
+      '@izzyjs/route':
+        specifier: ^1.2.0
+        version: 1.2.0(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1)
       '@radix-ui/react-accordion':
         specifier: ^1.2.11
         version: 1.2.11(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -168,9 +171,6 @@ importers:
       '@ianvs/prettier-plugin-sort-imports':
         specifier: ^4.5.1
         version: 4.5.1(prettier@3.6.2)
-      '@izzyjs/route':
-        specifier: ^1.2.0
-        version: 1.2.0(@adonisjs/core@6.19.0(@adonisjs/assembler@7.8.2(typescript@5.8.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1)
       '@japa/api-client':
         specifier: ^3.1.0
         version: 3.1.0(@japa/assert@4.0.1(@japa/runner@4.2.0))(@japa/runner@4.2.0)

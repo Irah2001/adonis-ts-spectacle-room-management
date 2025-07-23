@@ -112,12 +112,10 @@ export function EditEmployeeForm({ employee, onSuccess, onCancel }: EditEmployee
 							/>
 						</div>
 
-						<div className="flex justify-end gap-2">
-							{onCancel && (
-								<Button type="button" variant="outline" onClick={onCancel}>
-									Cancel
-								</Button>
-							)}
+						<div className="mt-4 flex gap-2">
+							<Button type="button" variant="outline" onClick={onCancel} className="flex-1">
+								Cancel
+							</Button>
 							<Button type="submit" disabled={form.formState.isSubmitting}>
 								{form.formState.isSubmitting ? 'Updating...' : 'Update Employee'}
 							</Button>
