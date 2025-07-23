@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import { vineResolver } from '@hookform/resolvers/vine';
 import { router, usePage } from '@inertiajs/react';
+import { route } from '@izzyjs/route/client';
 import { useForm } from 'react-hook-form';
 
 import { NotificationType } from '#types/notification';
@@ -39,8 +40,8 @@ export function CreateEventForm({
 		mode: 'onChange',
 		resolver: vineResolver(createEventValidator(false)),
 		defaultValues: {
-			date: new Date().toISOString(),
-			status: '',
+			date: new Date().toISOString().split('T')[0],
+			status: 'planned',
 			seats: 0,
 			description: '',
 			isReady: false,
@@ -66,7 +67,7 @@ export function CreateEventForm({
 	function onSubmit(data: CreateEventSchema) {
 		const dataToSend = { ...data, date: new Date(data.date).toISOString() };
 
-		router.put('/admin/events', dataToSend as unknown as Record<string, string>, {
+		router.put(route('admin.events.create').path, dataToSend as unknown as Record<string, string>, {
 			onSuccess: () => {
 				form.reset();
 				onSuccess?.();
@@ -116,7 +117,20 @@ export function CreateEventForm({
 									<FormItem>
 										<FormLabel>Status</FormLabel>
 										<FormControl>
-											<Input required {...field} />
+											<Select onValueChange={(value) => field.onChange(value)} defaultValue={field.value} required>
+												<FormControl>
+													<SelectTrigger>
+														<SelectValue placeholder="Select a status" />
+													</SelectTrigger>
+												</FormControl>
+												<SelectContent>
+													<SelectItem value="planned">Planned</SelectItem>
+													<SelectItem value="confirmed">Confirmed</SelectItem>
+													<SelectItem value="in_progress">In Progress</SelectItem>
+													<SelectItem value="completed">Completed</SelectItem>
+													<SelectItem value="cancelled">Cancelled</SelectItem>
+												</SelectContent>
+											</Select>
 										</FormControl>
 										<FormMessage />
 									</FormItem>

@@ -11,7 +11,7 @@ export const createEventValidator = (server: boolean) => {
 	return vine.compile(
 		vine.object({
 			date: vine.string(),
-			status: vine.string(),
+			status: vine.enum(['planned', 'confirmed', 'in_progress', 'completed', 'cancelled']),
 			seats: vine.number().min(0),
 			description: vine.string(),
 			isReady: vine.boolean(),

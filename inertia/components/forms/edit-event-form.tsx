@@ -71,7 +71,7 @@ export function EditEventForm({ event, onSuccess, onCancel, rooms, participants 
 												type="date"
 												required
 												{...field}
-												value={field.value ? new Date(field.value).toISOString() : ''}
+												value={field.value ? new Date(field.value).toISOString().split('T')[0] : ''}
 												onChange={(event_) => field.onChange(event_.target.value)}
 											/>
 										</FormControl>
@@ -88,7 +88,20 @@ export function EditEventForm({ event, onSuccess, onCancel, rooms, participants 
 									<FormItem>
 										<FormLabel>Status</FormLabel>
 										<FormControl>
-											<Input required {...field} />
+											<Select onValueChange={(value) => field.onChange(value)} defaultValue={field.value} required>
+												<FormControl>
+													<SelectTrigger>
+														<SelectValue placeholder="Select a status" />
+													</SelectTrigger>
+												</FormControl>
+												<SelectContent>
+													<SelectItem value="planned">Planned</SelectItem>
+													<SelectItem value="confirmed">Confirmed</SelectItem>
+													<SelectItem value="in_progress">In Progress</SelectItem>
+													<SelectItem value="completed">Completed</SelectItem>
+													<SelectItem value="cancelled">Cancelled</SelectItem>
+												</SelectContent>
+											</Select>
 										</FormControl>
 										<FormMessage />
 									</FormItem>

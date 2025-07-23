@@ -66,19 +66,12 @@ export default class AdminEventsController {
 	async create({ request, response, session }: HttpContext) {
 		const data = await request.validateUsing(createEventValidator(true));
 
-		try {
-			await Event.create({ ...data, date: DateTime.fromISO(data.date) });
+		await Event.create({ ...data, date: DateTime.fromISO(data.date) });
 
-			session.flash('notification', {
-				type: 'success',
-				message: 'Event created successfully',
-			});
-		} catch {
-			session.flash('notification', {
-				type: 'error',
-				message: 'Failed to create event',
-			});
-		}
+		session.flash('notification', {
+			type: 'success',
+			message: 'Event created successfully',
+		});
 
 		response.redirect().back();
 	}
@@ -87,20 +80,13 @@ export default class AdminEventsController {
 		const event = await Event.findOrFail(params.id);
 		const data = await request.validateUsing(updateEventValidator(true));
 
-		try {
-			event.merge({ ...data, date: data.date ? DateTime.fromISO(data.date) : undefined });
-			await event.save();
+		event.merge({ ...data, date: data.date ? DateTime.fromISO(data.date) : undefined });
+		await event.save();
 
-			session.flash('notification', {
-				type: 'success',
-				message: 'Event updated successfully',
-			});
-		} catch {
-			session.flash('notification', {
-				type: 'error',
-				message: 'Failed to update event',
-			});
-		}
+		session.flash('notification', {
+			type: 'success',
+			message: 'Event updated successfully',
+		});
 
 		response.redirect().back();
 	}
@@ -108,19 +94,12 @@ export default class AdminEventsController {
 	async delete({ params, response, session }: HttpContext) {
 		const event = await Event.findOrFail(params.id);
 
-		try {
-			await event.delete();
+		await event.delete();
 
-			session.flash('notification', {
-				type: 'success',
-				message: 'Event deleted successfully',
-			});
-		} catch {
-			session.flash('notification', {
-				type: 'error',
-				message: 'Failed to delete event',
-			});
-		}
+		session.flash('notification', {
+			type: 'success',
+			message: 'Event deleted successfully',
+		});
 
 		response.redirect().back();
 	}
