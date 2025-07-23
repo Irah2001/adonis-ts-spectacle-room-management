@@ -100,7 +100,7 @@ export default function Home() {
 					style={{ backgroundImage: "url('/placeholder.svg?height=500&width=1200')" }}
 				/>
 				<div className="absolute inset-0 z-20 flex items-center justify-center">
-					<div className="container px-4 text-center md:px-6">
+					<div className="container mx-auto px-4 text-center md:px-6">
 						<h1 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-5xl">
 							Experience Live Music & Events
 						</h1>
@@ -121,7 +121,7 @@ export default function Home() {
 			</section>
 
 			<section className="bg-muted/30 py-12">
-				<div className="container px-4 md:px-6">
+				<div className="container mx-auto px-4 md:px-6">
 					<h2 className="mb-8 text-3xl font-bold tracking-tight">Featured Events</h2>
 					<div className="grid gap-6 md:grid-cols-3">
 						{featuredEvents.map((event) => (
@@ -173,9 +173,8 @@ export default function Home() {
 				</div>
 			</section>
 
-			{/* Upcoming Events */}
 			<section className="py-12">
-				<div className="container px-4 md:px-6">
+				<div className="container mx-auto px-4 md:px-6">
 					<div className="mb-8 flex items-center justify-between">
 						<h2 className="text-3xl font-bold tracking-tight">Upcoming Events</h2>
 						<Link href="/events">
@@ -224,9 +223,8 @@ export default function Home() {
 				</div>
 			</section>
 
-			{/* Venues Section */}
 			<section className="bg-muted/30 py-12">
-				<div className="container px-4 md:px-6">
+				<div className="container mx-auto px-4 md:px-6">
 					<h2 className="mb-8 text-3xl font-bold tracking-tight">Our Venues</h2>
 					<div className="grid gap-6 md:grid-cols-3">
 						{[
@@ -275,9 +273,8 @@ export default function Home() {
 				</div>
 			</section>
 
-			{/* Newsletter Section */}
 			<section className="bg-primary text-primary-foreground py-12">
-				<div className="container px-4 text-center md:px-6">
+				<div className="container mx-auto px-4 text-center md:px-6">
 					<h2 className="mb-4 text-3xl font-bold tracking-tight">Stay Updated</h2>
 					<p className="mx-auto mb-8 max-w-2xl text-lg">
 						Subscribe to our newsletter to get the latest updates on upcoming events, special offers, and more.

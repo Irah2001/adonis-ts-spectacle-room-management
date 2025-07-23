@@ -2,7 +2,8 @@ import { StrictMode } from 'react';
 
 import { ThemeProvider } from 'next-themes';
 
-import Header from '~/components/header';
+import { Footer } from '~/components/footer';
+import { Header } from '~/components/header';
 import { Notifications } from '~/components/notifications';
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
@@ -10,7 +11,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 		<StrictMode>
 			<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 				<Header />
-				<main className="flex min-h-dvh justify-center p-4 pt-24 lg:p-8 lg:pt-28">{children}</main>
+				<main className="flex min-h-dvh justify-center pt-20">{children}</main>
+				<Footer />
 				<Notifications />
 			</ThemeProvider>
 		</StrictMode>

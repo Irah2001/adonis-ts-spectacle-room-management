@@ -100,7 +100,7 @@ export default function Events({ events }: EventsProps) {
 		<div className="flex min-h-screen w-full flex-col">
 			<main className="flex-1">
 				<section className="bg-muted/30 py-8">
-					<div className="container px-4 md:px-6">
+					<div className="container mx-auto px-4 md:px-6">
 						<div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 							<div>
 								<h1 className="text-3xl font-bold tracking-tight">Events & Shows</h1>
@@ -119,7 +119,7 @@ export default function Events({ events }: EventsProps) {
 				</section>
 
 				<section className="border-b py-6">
-					<div className="container px-4 md:px-6">
+					<div className="container mx-auto px-4 md:px-6">
 						<div className="flex flex-col gap-4 md:flex-row">
 							<div className="relative flex-1">
 								<Search className="text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4" />
@@ -191,7 +191,7 @@ export default function Events({ events }: EventsProps) {
 				</section>
 
 				<section className="py-8">
-					<div className="container px-4 md:px-6">
+					<div className="container mx-auto px-4 md:px-6">
 						<Tabs defaultValue="grid" className="w-full">
 							<div className="mb-6 flex items-center justify-between">
 								<h2 className="text-2xl font-bold tracking-tight">All Events</h2>

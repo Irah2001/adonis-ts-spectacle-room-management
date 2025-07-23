@@ -102,7 +102,7 @@ Supporting acts include The Amplifiers and Sound Wave, two up-and-coming bands t
 					<div className="absolute inset-0 z-10 bg-black/60" />
 					<div className="h-[400px] bg-cover bg-center" style={{ backgroundImage: `url(${event.image})` }} />
 					<div className="absolute inset-0 z-20 flex items-center">
-						<div className="container px-4 md:px-6">
+						<div className="container mx-auto px-4 md:px-6">
 							<Link
 								href="/events"
 								className="mb-4 inline-flex items-center text-sm font-medium text-white/90 hover:text-white"
@@ -144,7 +144,7 @@ Supporting acts include The Amplifiers and Sound Wave, two up-and-coming bands t
 				</section>
 
 				<section className="py-12">
-					<div className="container px-4 md:px-6">
+					<div className="container mx-auto px-4 md:px-6">
 						<div className="grid gap-8 md:grid-cols-3">
 							<div className="space-y-8 md:col-span-2">
 								<Card>
@@ -399,7 +399,7 @@ Supporting acts include The Amplifiers and Sound Wave, two up-and-coming bands t
 				</section>
 
 				<section className="bg-muted/30 py-12">
-					<div className="container px-4 md:px-6">
+					<div className="container mx-auto px-4 md:px-6">
 						<h2 className="mb-8 text-2xl font-bold tracking-tight">You Might Also Like</h2>
 						<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
 							{[1, 2, 3, 4].map((eventId) => (

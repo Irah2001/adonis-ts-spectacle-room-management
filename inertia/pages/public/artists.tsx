@@ -25,7 +25,7 @@ export default function Artists({ artists }: ArtistsProps) {
 		<div className="flex min-h-screen w-full flex-col">
 			<main className="flex-1">
 				<section className="bg-muted/30 py-8">
-					<div className="container px-4 md:px-6">
+					<div className="container mx-auto px-4 md:px-6">
 						<div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 							<div>
 								<h1 className="text-3xl font-bold tracking-tight">Artists</h1>
@@ -44,7 +44,7 @@ export default function Artists({ artists }: ArtistsProps) {
 				</section>
 
 				<section className="py-8">
-					<div className="container px-4 md:px-6">
+					<div className="container mx-auto px-4 md:px-6">
 						<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 							{artists.map((artist) => (
 								<Card key={artist.id} className="overflow-hidden">
